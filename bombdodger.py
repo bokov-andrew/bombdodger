@@ -34,7 +34,7 @@ def layout_window(window):
     for rowNumber, rowList in enumerate(bombfield):
         for columnNumber, columnEntry in enumerate(rowList):
             if random.randint(1,100) < 25:
-                square = tkinter.Label(window, text = "    ", bg = "darkgreen")
+                square = tkinter.Label(window, text = "    ", bg = "red")
             elif random.randint(1,100) > 75:
                 square = tkinter.Label(window, text = '    ', bg = 'seagreen')
             else:
@@ -42,4 +42,4 @@ def layout_window(window):
 
                 square.grid(row = rowNumber, column = columnNumber)
 
-                play_bombdodger()
+play_bombdodger()
