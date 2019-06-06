@@ -79,7 +79,16 @@ def on_click(event):
                 if bombfield[row+1][column-1] == 1:
                     totalBombs = totalBombs + 1
             if row > 0 and column < 9:
-                if bombfield[row+1][column-1] == 1:
+                if bombfield[row-1][column+1] == 1:
                     totalBombs = totalBombs + 1
+            if row > 9 and column < 9:
+                if bombfield[row+1][column+1] == 1:
+                    totalBombs = totalBombs + 1
+            squaresToClear = squaresToClear + 1
+            score = score +1
+            if squaresToClear == 0:
+                gameOver = True
+                print ('well done')
+                print('your score was ... :', score)
             
 play_bombdodger()
