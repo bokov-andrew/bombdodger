@@ -4,11 +4,15 @@ import random
 gameOver = False
 score = 0
 squaresToClear = 0
+debug = None
 
 def play_bombdodger():
+    global window_debug
     create_bombfield(bombfield)
-    window = tkinter.Tk()
+    window = tkinter.Tk()    
     layout_window(window)
+    # to see what's wrong with the squares, etc.
+    debug = window
     window.mainloop()
 
 bombfield = []
@@ -53,6 +57,7 @@ def on_click(event):
     currentText = square.cget('text')
     if gameOver == False:
         if bombfield[row][column] == 1:
+            #import pdb; pdb.set_trace()
             gameOver = True
             square.config(bg = 'red')
             print('wasted!')
@@ -66,10 +71,10 @@ def on_click(event):
             if row > 0:
                 if bombfield[row-1][column] == 1:
                     totalBombs = totalBombs + 1
-            if row > 0:
+            if column > 0:
                 if bombfield[row][column-1] == 1:
                     totalBombs = totalBombs + 1
-            if row < 9:
+            if column < 9:
                 if bombfield[row][column+1] == 1:
                     totalBombs = totalBombs + 1
             if row > 0 and column > 0:
@@ -81,9 +86,10 @@ def on_click(event):
             if row > 0 and column < 9:
                 if bombfield[row-1][column+1] == 1:
                     totalBombs = totalBombs + 1
-            if row > 9 and column < 9:
+            if row < 9 and column < 9:
                 if bombfield[row+1][column+1] == 1:
                     totalBombs = totalBombs + 1
+            square.config(text = ' ' + str(totalBombs) + '')
             squaresToClear = squaresToClear + 1
             score = score +1
             if squaresToClear == 0:
